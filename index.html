@@ -12,49 +12,40 @@
 </head>
 
 <body>
-  <section class="header">
-    <h1> Employee Manager</h1>
-  </section>
 
-  <div class="sidenav">
-    <a href="#" onclick="interpret('print')" id="print">Print</a>
-    <!-- <a href="#" onclick="printList()">Print</a> -->
-    <a href="#" onclick="interpret('verify')" id="verify">Verify</a>
-    <!-- <a href="#" onclick="verifyCommand()">Verify</a> -->
-    <a href="#" onclick="interpret('lookup')" id="lookup">Lookup</a>
-    <!-- <a href="#" onclick="lookupCommand()">Lookup</a> -->
-    <a href="#" onclick="interpret('contains')" id="contains">Contains</a>
-    <!-- <a href="#" onclick="contains()">Contains</a> -->
-    <a href="#" onclick="interpret('update')" id="update">Update</a>
-    <!-- <a href="#" onclick="updateCommand()">Update</a> -->
-    <a href="#" onclick="interpret('add')" id="addEmployee">Add</a>
-    <!-- <a href="#" onclick="addEmployee()">Add</a> -->
-    <a href="#" onclick="interpret('delete')" id="removeEmployee">Delete</a>
-    <!-- <a href="#" onclick="deleteEmployee()">Delete</a> -->
-    <a href="#" onclick="interpret('phone')" id="phoneLookup">Phone</a>
-    <!-- <a href="#" onclick="phoneLookup()">Phone Lookup</a> -->
+  <div class="grid-container">
+    <div class="box one">
+      <div class="sidenav">
+        <a href="#" id="print">Print</a>
+        <a href="#" id="verify">Verify</a>
+        <a href="#" id="lookup">Lookup</a>
+        <a href="#" id="contains">Contains</a>
+        <a href="#" id="update">Update</a>
+        <a href="#" id="add">Add</a>
+        <a href="#" id="delete">Delete</a>
+        <a href="#" id="phone">Phone</a>
+      </div>
+    </div>
+
+    <div class="box two" id="home">
+      <h1>Employee Manager</h1>
+      <form class="hide">
+        <input id="input" placeholder="Name" /> <br>
+        <input id="office" placeholder="Office Number" /> <br>
+        <input id="phone" placeholder="Phone Number" /> <br>
+        <!-- <input id="updateField" placeholder="Enter Name, Office or Phone Field" /> <br> -->
+        <div id="submit"><i class="fa fa-search" aria-hidden="true"></i></div>
+      </form>
+      <div id="content"></div>
+      <div id="outputArea"></div>
+    </div>
   </div>
 
-  <!-- <div class="container">
-    <h2 class="title">Verify</h2>
-    <input type="Verify" id="verifyInput">
-  </div> -->
 
-  <!-- <form>
-    <input id="print" />
-    <button id="submit">Search</button>
-  </form> -->
+  <script src="render.js"></script>
+  <script src="dom.js"></script>
+  <script src="app.js"></script>
 
-  <div id="content">
-    <br>
-    <form><br><input id="input"><input id="button" type="submit" value="button" onclick="verify()"></form>
-
-    <div id="outputArea"></div>
-    <!-- <div id="list"></div> -->
-    <script src="render.js"></script>
-    <script src="dom.js"></script>
-    <script src="app.js"></script>
-  </div>
 </body>
 
 </html>
