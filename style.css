@@ -1,4 +1,5 @@
 body {
+    height: 100vh;
     background: white;
     font-family: 'Roboto Condensed', sans-serif;
     color: black;
@@ -6,10 +7,38 @@ body {
     padding: 25px;
 }
 
-main {
-    margin-left: 75px; /* Same width of sidenav */
-    font-size: 28px; /* Increased text to enable scrolling */
-    padding: 0px 10px;
+.grid-container {
+    display: grid;
+    grid-template-columns: 115px auto;
+    grid-column-gap: 12px;
+    padding: 10px;
+    text-align: center;
+}
+
+.sidenav {
+    height: 100%;
+    width: 85px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: gray;
+    color: white;
+    overflow-x: hidden;
+    padding-top: 20%;
+}
+
+.sidenav a {
+    padding: 13px 0px 6px 15px;
+    text-decoration: none;
+    text-align: left;
+    font-size: 15px;
+    color: white;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: yellow;
 }
 
 #home {
@@ -28,89 +57,44 @@ h1 {
     padding-right: 10px;
 }
 
-.sidenav {
-    height: 100%;
-    width: 85px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: gray;
-    color: white;
-    overflow-x: hidden;
-    padding-top: 20%;
-}
-
-.sidenav a {
-    padding: 6px 0px 6px 8px;
-    text-decoration: none;
-    text-align: left;
-    font-size: 12px;
-    color: white;
-    display: block;
-}
-
-.sidenav a:hover {
-    color: black;
-}
-
-#content {
-    text-align: left;
-    font-size: 30px;
-    color: black;
-    margin-left: 75px;
-}
-
-/* print {
-    border-radius: 25px;
-    border: 2px solid black;
-    padding: 20px;
-    width: 200px;
-    height: 15px;
-} */
-
-/* #verifyInput {
-    display: inline-block;
-    border-radius: 30px;
-    border: 2px solid darkgray;
-    padding: 12px;
-    width: 420px;
-    height: 1px;
-    margin-top: 70px;
-    margin-left: 253px;
-    margin-right: 150px;
-    text-align: left;
-}  */
-
-input {
+form {
     display: none;
+    margin-left: 200px;
+    margin-top: 200px;
 }
 
 .show {
     display: block;
 }
 
-#outputArea {
-    line-height: 1.75;
-    padding: 25px;
-    margin-left: 50px;
+.hide {
+    display: none;
 }
 
-/* #button {
+#input {
     display: none;
-    /* display: inline-block; */
-    /* border-radius: 30px;
-    border: 2px solid darkgray;
-    padding: 12px;
-    width: 490px;
-    height: 1px;
-    margin-top: 25px;
-    margin-left: 200px;
-    text-align: right;
-    font-size: 10px;
-} */ 
+    border-radius: 25px;
+    border-color: black;
+    margin: 10px;
+    height: 25px;
+    width: 300px;
+    text-align: center;
+}
 
-/* @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-} */
+input::placeholder {
+    text-align: center;
+}
+
+button {
+    display: none;
+    position: relative;
+    left: 350px;
+    bottom: 37px;
+    z-index: 10;
+}
+
+#content {
+    font-size: 18px;
+    color: black;
+    margin: 30px;
+}
