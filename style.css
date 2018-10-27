@@ -57,24 +57,47 @@ h1 {
     padding-right: 10px;
 }
 
-form {
-    display: none;
-    margin-left: 200px;
-    margin-top: 200px;
+/* .two {
+    display: block;
+    width: 100%;
+} */
+
+#content {
+    font-size: 18px;
+    color: black;
+    margin: 30px;
 }
 
-.show {
-    display: block;
+
+
+/* .space {
+    padding-bottom: 15px;
+} */
+
+p {
+    padding-left: 10px;
+    padding-bottom: 2px;
 }
 
 .hide {
     display: none;
 }
 
-#input {
+.show {
+    display: block;
+    text-align: left;
+    /* padding: 10px 0px 20px 30px; */
+}
+
+form {
+    display: none;
+    margin-left: 200px;
+    margin-top: 30px;
+}
+
+input {
     display: none;
     border-radius: 25px;
-    border-color: black;
     margin: 10px;
     height: 25px;
     width: 300px;
@@ -89,12 +112,6 @@ button {
     display: none;
     position: relative;
     left: 350px;
-    bottom: 37px;
+    bottom: 115px;
     z-index: 10;
-}
-
-#content {
-    font-size: 18px;
-    color: black;
-    margin: 30px;
 }

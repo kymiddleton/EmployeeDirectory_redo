@@ -226,9 +226,10 @@ const setVerify = function () {
     command = 'verify';
     runSubmit(event);
     hidePrint();
-    addInput();
     removeFields();
+    addInput();
     showForm();
+    
 }
 const setLookup = function () { 
     // outputDiv.empty();
