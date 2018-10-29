@@ -155,10 +155,15 @@ const runSubmit = function (event) {
     } else if (command === 'delete') {
         let htmlStr = '';
         for (let i = 0; i < employeeList.length; i++) {
+            if (employeeList[i].name.toLowerCase() === $('#input').val().toLowerCase()) {
+                employeeList.splice(i, 1);
+            }
+        }
+        for (let i = 0; i < employeeList.length; i++) {
             htmlStr += `<div class="print"><p> Name: ${employeeList[i].name} </p>`;
-            htmlStr += `<p> Office Number: ${employeeList[i].officeNum} </p>`;
-            htmlStr += `<p> Phone Number: ${employeeList[i].phoneNum} </p>`;
-            htmlStr += '<p> ----- </p></div>';
+            htmlStr += `<p> Office: ${employeeList[i].officeNum} </p>`;
+            htmlStr += `<p> Phone: ${employeeList[i].phoneNum} </p>`;
+            htmlStr += `<p> ----- </p></div>`;
         }
         render(htmlStr);
 
