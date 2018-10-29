@@ -5,6 +5,7 @@ body {
     color: black;
     line-height: 1.75;
     padding: 25px;
+    overflow: scroll;
 }
 
 .grid-container {
@@ -24,7 +25,7 @@ body {
     left: 0;
     background-color: gray;
     color: white;
-    overflow-x: hidden;
+    overflow: scroll;
     padding-top: 20%;
 }
 
@@ -63,11 +64,16 @@ h1 {
 } */
 
 #content {
-    font-size: 18px;
+    font-size: 15px;
     color: black;
     margin: 30px;
+    overflow-y: scroll;
+    scroll-behavior: auto;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
 
 
 /* .space {
@@ -103,6 +109,7 @@ input {
     height: 25px;
     width: 300px;
     text-align: center;
+    align-items: center;
 }
 
 input::placeholder {

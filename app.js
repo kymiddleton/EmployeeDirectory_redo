@@ -51,13 +51,19 @@ const findEmployee = function (startIndex, employeeName) {
     return -1;
 }
 
+const printEmployee = function (i) {
+    employees.append(`<div>${"Name: " + employeeList[i].name + " / Office: " + employeeList[i].officeNum + " / Phone: " + employeeList[i].phoneNum}</div>`);
+
+    return true;
+}
+
 let command = '';
-// const outputDiv = $('#content');
+const outputDiv = $('#content');
 
 const runSubmit = function (event) {
     event.preventDefault();
-    // outputDiv.empty();
-    console.log('does this work');
+    outputDiv.empty();
+    console.log('inside', command);
     if (command === 'print') {
         let htmlStr = '';
         for (let i = 0; i < employeeList.length; i++) {
@@ -69,7 +75,7 @@ const runSubmit = function (event) {
         render(htmlStr);
 
     } else if (command === 'verify') {
-        // outputDiv.empty();
+        outputDiv.empty();
         console.log('----empty----');
         let htmlStr = '<div class="print"><p>Employee NOT Found </p></div>';
         for (let i = 0; i < employeeList.length; i++) {
@@ -80,6 +86,7 @@ const runSubmit = function (event) {
         render(htmlStr);
 
     } else if (command === 'lookup') {
+        outputDiv.empty();
         htmlStr = '';
         let lookup = false;
         for (let i = 0; i < employeeList.length; i++) {
@@ -96,8 +103,8 @@ const runSubmit = function (event) {
         render(htmlStr);
 
     } else if (command === 'contains') {
-        // outputDiv.empty();
-        // console.log('contains');
+        outputDiv.empty();
+        console.log('contains');
         let htmlStr = '';
         let containsEmployee = false
         for (let i = 0; i < employeeList.length; i++) {
@@ -113,18 +120,45 @@ const runSubmit = function (event) {
             htmlStr += '<p> Match Not Found </p>';
         }
         render(htmlStr);
-    
-    } else if (command = 'update') {
-        // outputDiv.empty();
+
+    } else if (command === 'update') {
         let htmlStr = '';
-        for (let i = 0; i < employeeList.length; i ++) {
-            if (employeeList[i].name.toLowerCase().includes($('#input').val().toLowerCase())) {
+        for (let i = 0; i < employeeList.length; i++) {
+            if (employeeList[i].name.toLowerCase() === $('#input').val().toLowerCase()) {
                 employeeList[i].officeNum = $('#office').val();
                 employeeList[i].phoneNum = $('#phone').val();
                 htmlStr += `<div class="print"><p> Name: ${employeeList[i].name} </p>`;
-                htmlStr += `<p> Office Number: ${employeeList[i].officeNum} </p>`;
-                htmlStr += `<p> Phone Number: ${employeeList[i].phoneNum} </p></div>`;
+                htmlStr += `<p> Office: ${employeeList[i].officeNum} </p>`;
+                htmlStr += `<p> Phone: ${employeeList[i].phoneNum} </p></div>`;
             }
+        }
+        render(htmlStr);
+
+    } else if (command === 'add') {
+        let htmlStr = '';
+        const newEmployee = {
+            name: $('#input').val(),
+            officeNum: $('#office').val(),
+            phoneNum: $('#phone').val()
+        }
+
+        employeeList.push(newEmployee);
+
+        for (let i = 0; i < employeeList.length; i++) {
+            htmlStr += `<div class="print"><p> Name: ${employeeList[i].name} </p>`;
+            htmlStr += `<p> Office: ${employeeList[i].officeNum} </p>`;
+            htmlStr += `<p> Phone: ${employeeList[i].phoneNum} </p>`;
+            htmlStr += `<p> ----- </p></div>`;
+        }
+        render(htmlStr);
+
+    } else if (command === 'delete') {
+        let htmlStr = '';
+        for (let i = 0; i < employeeList.length; i++) {
+            htmlStr += `<div class="print"><p> Name: ${employeeList[i].name} </p>`;
+            htmlStr += `<p> Office Number: ${employeeList[i].officeNum} </p>`;
+            htmlStr += `<p> Phone Number: ${employeeList[i].phoneNum} </p>`;
+            htmlStr += '<p> ----- </p></div>';
         }
         render(htmlStr);
 
@@ -132,39 +166,7 @@ const runSubmit = function (event) {
 
 };
 
-    
 
-// case "add":
-//     outputDiv.empty();
-//     console.log('add');
-//     const name = $('#input').val();
-//     const officeNum = $('#office').val();
-//     const phoneNum = $('#phone').val();
-
-//     employeeList.push({ name, officeNum, phoneNum });
-//     employeeList.forEach(e => {
-//         htmlStr += `<div class="space"><p>Name: ${e.name}</p>`; //"space" refers to CSS .space 
-//         htmlStr += `<p>Office Number: ${e.officeNum}</p>`;
-//         htmlStr += `<p>Phone Number: ${e.phoneNum}</p></div>`;
-//     });
-//     render(htmlStr);
-//     break;
-
-// case "delete":
-//     outputDiv.empty();
-//     index = state.employeeList.findIndex(function (element) {
-//         return element.name.toLowerCase() === $('#input').val().toLowerCase();
-//     });
-//     if (index > -1) {
-//         employeeList.splice(index, 1);
-//         employeeList.forEach(e => {
-//             htmlStr += `<div class="space"><p>Name: ${e.name}</p>`; //"space" refers to CSS .space 
-//             htmlStr += `<p>Office Number: ${e.officeNum}</p>`;
-//             htmlStr += `<p>Phone Number: ${e.phoneNum}</p></div>`;
-//         });
-//     } else { outputDiv.append("Employee NOT Found"); }
-//     render(htmlStr);
-//     break;
 
 //         case "phone":
 //             outputDiv.empty();
@@ -209,6 +211,11 @@ const hidePrint = function () {
     $('.print').addClass('hide');
 }
 
+// const emptyInput = function () {
+//     $('#input').empty('text');
+// }
+
+
 /*DO NOT DELETE */ //Call back Functions power event listeners
 const setPrint = function () {
     command = 'print';
@@ -219,15 +226,16 @@ const setPrint = function () {
 }
 const setVerify = function () {
     command = 'verify';
-    runSubmit(event);
+    // runSubmit(event);
     hidePrint();
-    removeFields();
     addInput();
+    removeFields();
     showForm();
 }
 const setLookup = function () {
+    // outputDiv.empty();
     command = 'lookup';
-    runSubmit(event);
+    // runSubmit(event);
     hidePrint();
     addInput();
     removeFields();
@@ -253,7 +261,8 @@ const setUpdate = function () {
 }
 const setAdd = function () {
     // outputDiv.empty();
-    hidePrint();
+
+    // hidePrint();
     addInput();
     addFields();
     showForm()
