@@ -54,56 +54,76 @@ const findEmployee = function (startIndex, employeeName) {
 let command = '';
 // const outputDiv = $('#content');
 
-const runSubmit = function (e) {
-    e.preventDefault();
+const runSubmit = function (event) {
+    event.preventDefault();
+    // outputDiv.empty();
     console.log('does this work');
     if (command === 'print') {
         let htmlStr = '';
-        // outputDiv.empty();
         for (let i = 0; i < employeeList.length; i++) {
-            htmlStr += `<div class="print"><p>Name: ${employeeList[i].name}</p>`;
-            htmlStr += `<p>Office Number: ${employeeList[i].officeNum}</p>`;
-            htmlStr += `<p>Phone Number: ${employeeList[i].phoneNum}</p></div>`;
+            htmlStr += `<div class="print"><p>Name: ${employeeList[i].name} </p>`;
+            htmlStr += `<p> Office Number: ${employeeList[i].officeNum} </p>`;
+            htmlStr += `<p> Phone Number: ${employeeList[i].phoneNum} </p>`;
             htmlStr += `<p> ----- </p></div>`;
         }
         render(htmlStr);
 
     } else if (command === 'verify') {
-        let htmlStr = '<div class="print"><p>Employee NOT Found</p></div>';
+        // outputDiv.empty();
+        console.log('----empty----');
+        let htmlStr = '<div class="print"><p>Employee NOT Found </p></div>';
         for (let i = 0; i < employeeList.length; i++) {
             if (employeeList[i].name.toLowerCase() === $('#input').val().toLowerCase()) {
-                htmlStr = '<div class="print"><p>Employee Found</p></div>'; 
+                htmlStr = '<div class="print"><p> Employee Found </p></div>';
+            }
         }
-    }
-    render(htmlStr);
-}
+        render(htmlStr);
 
+    } else if (command === 'lookup') {
+        htmlStr = '';
+        let lookup = false;
+        for (let i = 0; i < employeeList.length; i++) {
+            if (employeeList[i].name.toLowerCase() === $('#input').val().toLowerCase()) {
+                htmlStr += `<div class="print"><p> Name: ${employeeList[i].name} </p>`;
+                htmlStr += `<p> Office Number: ${employeeList[i].officeNum} </p>`;
+                htmlStr += `<p> Phone Number: ${employeeList[i].phoneNum} </p></div>`;
+                lookup = true;
+            }
+        }
+        if (lookup === false) {
+            htmlStr += '<p>Employee Not Found</p>';
+        }
+        render(htmlStr);
+
+    } else if (command === 'contains') {
+        // outputDiv.empty();
+        // console.log('contains');
+        let htmlStr = '';
+        let containsEmployee = false
+        for (let i = 0; i < employeeList.length; i++) {
+            if (employeeList[i].name.toLowerCase().includes($('#input').val().toLowerCase())) {
+                htmlStr += `<div class="print"><p> Name: ${employeeList[i].name} </p>`;
+                htmlStr += `<p> Office Number: ${employeeList[i].officeNum} </p>`;
+                htmlStr += `<p> Phone Number: ${employeeList[i].phoneNum} </p>`;
+                htmlStr += '<p> ----- </p></div>';
+                containsEmployee = true;
+            }
+        }
+        if (containsEmployee === false) {
+            htmlStr += '<p> Match Not Found </p>';
+        }
+        render(htmlStr);
+    }
 };
 
 
-// case "lookup":
-//     outputDiv.empty();
-//     let match = false
-//     // let htmlStr = "";
-//     employeeList.forEach(e => {
-//         if (e.name.toLowerCase() === $('#input').val().toLowerCase()) {
-//             htmlStr += `<div class="space"><p>Name: ${e.name}</p>`;
-//             htmlStr += `<p>Office Number: ${e.officeNum}</p>`;
-//             htmlStr += `<p>Phone Number: ${e.phoneNum}</p></div>`;
-//             match = true;
-//         }
-//     });
-//     if (match === false) {
-//         htmlStr = '<p>Employee Not Found</p>';
-//     }
-//     render(htmlStr);
-//     break;
+
+
 
 // case "contains":
-//     outputDiv.empty();
-//     console.log('contains');
+
 //     let inputValue = $('#input').val().toLowerCase();
-//     let html = "";
+
 //     employeeList.forEach(e => {
 //         if (e.name.toLowerCase().includes(inputValue)) {
 //             html += `<div class="print"><p>Name: ${e.name}</p>`;
@@ -214,33 +234,31 @@ const hidePrint = function () {
     $('.print').addClass('hide');
 }
 
-/*DO NOT DELETE */ //Call back Functions that power event listeners
-const setPrint = function () { 
+/*DO NOT DELETE */ //Call back Functions power event listeners
+const setPrint = function () {
     command = 'print';
     runSubmit(event);
     removeFields();
     hideInput();
     hideForm();
 }
-const setVerify = function () { 
+const setVerify = function () {
     command = 'verify';
     runSubmit(event);
     hidePrint();
     removeFields();
     addInput();
     showForm();
-    
 }
-const setLookup = function () { 
-    // outputDiv.empty();
+const setLookup = function () {
+    command = 'lookup';
+    runSubmit(event);
     hidePrint();
     addInput();
     removeFields();
     showForm();
-    runSubmit(event);
-    command = 'lookup';
 }
-const setContains = function () { 
+const setContains = function () {
     // outputDiv.empty();
     hidePrint();
     addInput();
@@ -249,7 +267,7 @@ const setContains = function () {
     runSubmit(event);
     command = 'contains';
 }
-const setUpdate = function () { 
+const setUpdate = function () {
     // outputDiv.empty();
     hidePrint();
     addInput();
@@ -258,7 +276,7 @@ const setUpdate = function () {
     runSubmit(event);
     command = 'update';
 }
-const setAdd = function () { 
+const setAdd = function () {
     // outputDiv.empty();
     hidePrint();
     addInput();
@@ -267,7 +285,7 @@ const setAdd = function () {
     runSubmit(event);
     command = 'add';
 }
-const setDelete = function () { 
+const setDelete = function () {
     // outputDiv.empty();
     hidePrint();
     addInput();
@@ -276,7 +294,7 @@ const setDelete = function () {
     runSubmit(event)
     command = 'delete';
 }
-const setPhone = function () { 
+const setPhone = function () {
     // outputDiv.empty();
     removeFields();
     hideInput();
