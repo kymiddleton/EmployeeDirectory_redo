@@ -113,51 +113,26 @@ const runSubmit = function (event) {
             htmlStr += '<p> Match Not Found </p>';
         }
         render(htmlStr);
+    
+    } else if (command = 'update') {
+        // outputDiv.empty();
+        let htmlStr = '';
+        for (let i = 0; i < employeeList.length; i ++) {
+            if (employeeList[i].name.toLowerCase().includes($('#input').val().toLowerCase())) {
+                employeeList[i].officeNum = $('#office').val();
+                employeeList[i].phoneNum = $('#phone').val();
+                htmlStr += `<div class="print"><p> Name: ${employeeList[i].name} </p>`;
+                htmlStr += `<p> Office Number: ${employeeList[i].officeNum} </p>`;
+                htmlStr += `<p> Phone Number: ${employeeList[i].phoneNum} </p></div>`;
+            }
+        }
+        render(htmlStr);
+
     }
+
 };
 
-
-
-
-
-// case "contains":
-
-//     let inputValue = $('#input').val().toLowerCase();
-
-//     employeeList.forEach(e => {
-//         if (e.name.toLowerCase().includes(inputValue)) {
-//             html += `<div class="print"><p>Name: ${e.name}</p>`;
-//             html += `<p>Office Number: ${e.officeNum}</p>`;
-//             html += `<p>Phone Number: ${e.phoneNum}</p></div>`;
-//         }
-//     });
-//     render(html);
-//     break;
-
-// case "update": //Very close to working. Out of time to make changes to input fields. 
-//     outputDiv.empty();
-//     index = state.employeeList.findIndex(function (element) {
-//         return element.name.toLowerCase() === $('#input').val().toLowerCase();
-//     });
-//     updateValue = $('#phone').val();
-//     switch ($('#office').val().toLowerCase()) {
-//         case "name":
-//             employeeList[index].name = updateValue;
-//             break;
-//         case "office":
-//             employeeList[index].officeNum = updateValue;
-//             break;
-//         case "phone":
-//             employeeList[index].phoneNum = updateValue;
-//             break;
-//         default:
-//             htmlStr += `<div class="print" ><p>Invalid Command</p></div>`;
-//     };
-//     htmlStr += `<div class="space"><p>Name: ${e.name}</p>`; //"space" refers to CSS .space 
-//     htmlStr += `<p>Office Number: ${e.officeNum}</p>`;
-//     htmlStr += `<p>Phone Number: ${e.phoneNum}</p></div>`;
-//     render(htmlStr);
-//     break;
+    
 
 // case "add":
 //     outputDiv.empty();
@@ -260,21 +235,21 @@ const setLookup = function () {
 }
 const setContains = function () {
     // outputDiv.empty();
+    command = 'contains';
+    // runSubmit(event);
     hidePrint();
     addInput();
     removeFields();
     showForm()
-    runSubmit(event);
-    command = 'contains';
 }
 const setUpdate = function () {
     // outputDiv.empty();
+    command = 'update';
+    // runSubmit(event);
     hidePrint();
     addInput();
-    removeFields();
+    addFields();
     showForm()
-    runSubmit(event);
-    command = 'update';
 }
 const setAdd = function () {
     // outputDiv.empty();
