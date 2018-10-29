@@ -167,28 +167,21 @@ const runSubmit = function (event) {
         }
         render(htmlStr);
 
+    } else if (command === 'phone') {
+        let htmlStr = '';
+        let matchPhone = false;
+        for (let i = 0; i < employeeList.length; i++) {
+            if (employeeList[i].name.toLowerCase() === $('#input').val().toLowerCase()) {
+                htmlStr += `<div class="print"><p> Phone Number: ${employeeList[i].phoneNum}</p></div>`;
+                matchPhone = true
+            }
+        }
+        if (matchPhone === false) {
+            htmlStr = '<p>Employee Not Found</p>';
+        }
+        render(htmlStr);
     }
-
 };
-
-
-
-//         case "phone":
-//             outputDiv.empty();
-//             let matchPhone = false;
-//             employeeList.forEach(e => {
-//                 if (e.name.toLowerCase() === $('#input').val().toLowerCase()) {
-//                     htmlStr += `<div class="space"><p>Phone Number: ${e.phoneNum}</p></div>`;
-//                     matchPhone = true;
-//                 }
-//             });
-//             if (matchPhone === false) {
-//                 htmlStr = '<p>Employee Not Found</p>';
-//             }
-//             render(htmlStr);
-//             break;
-//     }
-// }
 
 //DOM functions
 const render = function (htmlStr) {
@@ -214,6 +207,12 @@ const removeFields = function () {
 }
 const hidePrint = function () {
     $('.print').addClass('hide');
+}
+const removeOffice = function () {
+    $('#office').removeClass('show');
+}
+const removeInput = function () {
+    $('#input').removeClass('show');
 }
 
 // const emptyInput = function () {
@@ -266,7 +265,6 @@ const setUpdate = function () {
 }
 const setAdd = function () {
     // outputDiv.empty();
-
     // hidePrint();
     addInput();
     addFields();
@@ -285,9 +283,11 @@ const setDelete = function () {
 }
 const setPhone = function () {
     // outputDiv.empty();
-    removeFields();
-    hideInput();
-    hideForm();
+    showForm();
+    hidePrint();
+    removeOffice();
+    removeInput();
+    addInput();
     runSubmit(event)
     command = 'phone';
 }
