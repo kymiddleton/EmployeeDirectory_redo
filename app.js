@@ -41,7 +41,7 @@ const employeeList = [
     }
 ];
 
-//Functions that iterate through the arrays
+//Functions that iterate through the arrays  
 const findEmployee = function (startIndex, employeeName) {
     for (i = startIndex; i < employeeList.length; i++) {
         if (employeeList[i].name.toLowerCase().includes(employeeName.toLowerCase())) {
