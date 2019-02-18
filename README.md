@@ -1,4 +1,12 @@
-# Instructions
+# Redesign UI for Employee List
+
+Clean up code and improve UI. 
+
+## Match the new design
+
+![Home Page Desktop](h_home.png)
+
+## Instructions
 
 Create a program that does all of the following:
 
@@ -43,7 +51,3 @@ Create a program that does all of the following:
 8. If the command is `phoneLookup`:
   * prompt the user for a name
   * print the `phoneNum` for the name provided by user. 
-  
-
-
-
